@@ -12,15 +12,6 @@ export class Food {
     this.y = Math.floor(Math.random() * (canvasHeight / this.size));
   }
 
-  // update(snakePosition) {
-  //   // Check if the food is eaten by the snake
-  //   if (this.x === snakePosition.x && this.y === snakePosition.y) {
-  //     this.respawn();
-  //     return true; // indicating the food was eaten
-  //   }
-  //   return false;
-  // }
-
   draw(ctx) {
     ctx.fillStyle = 'yellow';
     ctx.fillRect(this.x * this.size, this.y * this.size, this.size, this.size);

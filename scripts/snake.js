@@ -33,13 +33,6 @@ export class Snake {
     head.x += this.velocity.x;
     head.y += this.velocity.y;
 
-    // Handle border collisions
-    if (head.x < 0) head.x = 0;
-    if (head.y < 0) head.y = 0;
-    if (head.x >= canvasWidth / this.size) head.x = canvasWidth / this.size - 1;
-    if (head.y >= canvasHeight / this.size)
-      head.y = canvasHeight / this.size - 1;
-
     this.segments.unshift(head); // Add new head
     this.segments.pop(); // Remove last segment
 

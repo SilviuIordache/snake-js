@@ -15,9 +15,7 @@ for (let i = 0; i < NUM_FOODS; i++) {
 
 let snake = new Snake();
 
-function update() {
-  const newHead = snake.update();
-
+function checkCollisions(newHead, snake, canvas, gridSize, foods) {
   // Check for collisions with the wall or itself
   if (
     newHead.x < 0 ||
@@ -40,7 +38,11 @@ function update() {
       break; // Break out of the loop once a collision is detected
     }
   }
+}
 
+function update() {
+  const newHead = snake.update();
+  checkCollisions(newHead, snake, canvas, gridSize, foods);
 }
 
 function draw() {
