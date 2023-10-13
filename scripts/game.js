@@ -1,6 +1,5 @@
 import { Snake } from './snake.js';
 import { Food } from './food.js';
-import { handleInput } from './input.js';
 import { canvas, ctx, gridSize } from './canvasSetup.js';
 import { GAME_STATE } from './gameConfig.js';
 
@@ -55,6 +54,7 @@ function draw() {
 }
 
 function handleKeyDown(event) {
+  // Checking if the game is at the initial state or game over state
   if (
     currentState === GAME_STATE.INIT ||
     currentState === GAME_STATE.GAME_OVER
@@ -64,7 +64,26 @@ function handleKeyDown(event) {
     return;
   }
 
-  const direction = handleInput(event);
+  // Determining the direction based on the key pressed
+  let direction;
+  switch (event.key) {
+    case 'ArrowUp':
+      direction = 'up';
+      break;
+    case 'ArrowDown':
+      direction = 'down';
+      break;
+    case 'ArrowLeft':
+      direction = 'left';
+      break;
+    case 'ArrowRight':
+      direction = 'right';
+      break;
+    default:
+      return;
+  }
+
+  // Setting the snake's velocity based on the determined direction
   if (direction) {
     switch (direction) {
       case 'up':
@@ -88,6 +107,9 @@ document.addEventListener('keydown', handleKeyDown);
 function renderInitScreen() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillText('Press any key to start', canvas.width / 2, canvas.height / 2);
+
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
 }
 
 function renderGameOverScreen() {
@@ -98,6 +120,9 @@ function renderGameOverScreen() {
     canvas.width / 2,
     canvas.height / 2 + 30
   );
+
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
 }
 
 function gameLoop() {

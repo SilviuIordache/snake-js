@@ -1,4 +1,4 @@
-import { canvasWidth, canvasHeight, ctx, gridSize } from './canvasSetup.js';
+import { ctx, gridSize } from './canvasSetup.js';
 
 import { tickRate } from './gameConfig.js';
 
@@ -6,9 +6,12 @@ export class Snake {
   constructor() {
     this.ctx = ctx;
 
-    this.segments = [{ x: 5, y: 5 }];
+    this.segments = [
+      { x: 10, y: 10 },
+      { x: 10, y: 11 },
+    ];
 
-    this.velocity = { x: 0, y: 1 };
+    this.velocity = { x: 0, y: -1 };
     this.size = gridSize;
 
     this.tickRate = tickRate;
